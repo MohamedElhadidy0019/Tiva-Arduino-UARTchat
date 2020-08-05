@@ -116,7 +116,8 @@ void UART1Tx(char c)
 
 char UART1Rx(void)
 {
-    while((UART1_FR_R & 0x10) !=0);
+    if((UART1_FR_R & 0x10) !=0)   //if buffer is empty then no message received
+        return 0;
     char temp=UART1_DR_R;
     return (temp);
 }
