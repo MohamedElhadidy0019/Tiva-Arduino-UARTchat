@@ -8,5 +8,25 @@ void loop(void);
 
 int main(void)
 {
-	return 0;
+	setup();
+	while(1)
+	{
+	    loop();
+	}
 }
+
+void loop(void)
+{
+    printWordUART0("PC working\n");
+    delayMS(1000);
+}
+
+void setup(void)
+{
+    setupPLL();
+    setupSystick();
+    UART0setup();
+    UART1setup();
+}
+
+
