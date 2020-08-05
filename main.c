@@ -1,8 +1,6 @@
+void setup(void);
+void loop(void);
 
-
-/**
- * main.c
- */
 int main(void)
 {
 	return 0;
