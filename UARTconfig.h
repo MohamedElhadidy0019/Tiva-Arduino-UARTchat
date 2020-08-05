@@ -8,6 +8,7 @@
 #ifndef UART_CONFIG
 #define UART_CONFIG
 
+#include "tm4c123gh6pm.h"
 #include "PLL_SYSTICK.h"
 //////////////////////* Prototypes *////////////////////////
 

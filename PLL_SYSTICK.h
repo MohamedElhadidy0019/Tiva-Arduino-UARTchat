@@ -2,6 +2,8 @@
 #ifndef SETUP_PLL
 #define SETUP_PLL
 
+#include "tm4c123gh6pm.h"
+
 void setupPLL(void)
 {
 
