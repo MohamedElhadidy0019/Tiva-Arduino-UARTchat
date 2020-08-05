@@ -18,6 +18,7 @@ int main(void)
 void loop(void)
 {
     printWordUART0("PC working\n");
+    printWordUART1("Arduino working working\n");
     delayMS(1000);
 }
 
