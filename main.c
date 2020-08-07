@@ -81,13 +81,17 @@ void Ask(void)
     {
         char received=0;
         QuestionSend(theQuestion);
+        Switch_Send= (GPIO_PORTE_DATA_R&0x20)>>5;
+        delayMS(2);
+        while(Switch_Send){Switch_Send= (GPIO_PORTE_DATA_R&0x20)>>5; delayMS(2);}
+
         while(1)
         {
             received=UART1Rx();
             if(received==0);
             else
             {
-                UART1Tx(received);
+                UART0Tx(received);
             }
             if(received=='\n')
             {
@@ -146,15 +150,18 @@ void QuestionSend(int x)
         case 1:
 
             printWordUART1("Arduino,Are you hungry? \n");
+            //printWordUART0("Arduino,Are you hungry? \n");
 
             break;
         case 2:
 
             printWordUART1("Arduino,Are you thirsty? \n");
+            //printWordUART0("Arduino,Are you thirsty? \n");
             break;
         case 3:
 
             printWordUART1("Arduino,Are you happy? \n");
+           // printWordUART0("Arduino,Are you happy? \n");
             break;
 
 
