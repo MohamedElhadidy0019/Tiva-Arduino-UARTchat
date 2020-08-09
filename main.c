@@ -63,7 +63,7 @@ void setup(void)
 
 void Ask(void)
 {
-    static unsigned char theQuestion=1;
+    static unsigned char theQuestion=0;
     unsigned char Switch_State=(GPIO_PORTE_DATA_R&0x10)>>4;
     unsigned char Switch_Send= (GPIO_PORTE_DATA_R&0x20)>>5;
     delayMS(2);
@@ -89,11 +89,11 @@ void Ask(void)
     if(Switch_Send)
     {
         char received=0;
-        QuestionSend(theQuestion);
+
         Switch_Send= (GPIO_PORTE_DATA_R&0x20)>>5;
         delayMS(2);
         while(Switch_Send){Switch_Send= (GPIO_PORTE_DATA_R&0x20)>>5; delayMS(2);}
-
+        QuestionSend(theQuestion);
         while(1)
         {
             received=UART1Rx();
@@ -156,7 +156,9 @@ void Reply(void)
          }
      if(Switch_Send)
      {
-         //ReplySend(theAnswer); //Sends the Answer to the connected controller
+         Switch_Send= (GPIO_PORTE_DATA_R&0x20)>>5;
+         while(Switch_Send){Switch_Send= (GPIO_PORTE_DATA_R&0x20)>>5; delayMS(2);}
+         ReplySend(theAnswer); //Sends the Answer to the connected controller
          break;
      }
      }
@@ -227,18 +229,18 @@ void ReplySend(int x)
             {
             case 1:
 
-                printWordUART1("Yes \n");
+                printWordUART1("Yes\n");
                 //printWordUART0("Arduino,Are you hungry? \n");
 
                 break;
             case 2:
 
-                printWordUART1("No \n");
+                printWordUART1("No\n");
                 //printWordUART0("Arduino,Are you thirsty? \n");
                 break;
             case 3:
 
-                printWordUART1("Maybe \n");
+                printWordUART1("Maybe\n");
                // printWordUART0("Arduino,Are you happy? \n");
                 break;
 
