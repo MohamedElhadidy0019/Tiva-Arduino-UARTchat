@@ -31,7 +31,7 @@ int main(void)
 
 void loop(void)
 {
-    if(UART1Rx()==0)     //Then this is Asking mode
+    if((UART1_FR_R & 0x10) !=0)//(UART1Rx()==0)     //Then this is Asking mode
     {
         Ask();   //and wait for reply from the Arduino
     }
